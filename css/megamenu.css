@@ -91,3 +91,27 @@ strip > div {
 .container { 
 	position: relative;
  }
+
+ .new-item{
+ 	    background: #981937;
+    color: #fff;
+    padding: 0 3px 1px;
+    font-size: 12px;
+    margin-left: 5px;
+    position: relative;
+    font-weight: 900;
+ }
+
+ .delete-button { 
+ 	color : black;
+ 	background:  #eee4d1;
+ 	margin-left: 20px;
+ }
+
+ .download-button{
+ 	margin: auto;
+ }
+
+ .download-button:hover{
+ 	cursor: pointer;
+ }

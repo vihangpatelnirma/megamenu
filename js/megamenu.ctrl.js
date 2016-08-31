@@ -35,11 +35,36 @@ angular.module('megamenu')
 			return menu;
 		}
 
+		$scope.deleteMenu = function(index){
+			if(!confirm("Do you want to delete main menu")){
+				return;
+			}
+			$scope.data.splice(index,1);
+		}
+
+		$scope.deleteSubMenu = function(index){
+			if(!confirm("Do you want to delete sub menu")){
+				return;
+			}
+			$scope.currentMenu.data.splice(index,1);
+		}
+
+		$scope.deleteSubSubMenu = function(parentIndex , index){
+			if(!confirm("Do you want to delete sub sub menu")){
+				return;
+			}
+			$scope.currentMenu.data[parentIndex].data.splice(index,1);	
+		}
+
 		$scope.menuSelected = function(index){
 			$scope.currentMenu && ($scope.currentMenu.show = false);
 			$scope.currentMenu = $scope.data[index];
 			$scope.data[index].show = !$scope.data[index].show;
 	
+		}
+
+		$scope.downloadJSON = function(){
+			console.log($scope.data);
 		}
 
 		Network.fetch().success(function(response){

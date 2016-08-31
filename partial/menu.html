@@ -12,9 +12,14 @@
 		<div class="padding-10">
 			Href  : <input ng-model="menu.href">
 		</div>
+		<div>
+			<div class="button delete-button" ng-click="deleteMenu($index)">
+				&nbsp;Delete&nbsp;
+			</div>
+		</div>
 	</div>
 	<div ng-show="menu.show" class="submenu">
 		<div class="button" ng-click="addSubMenu(menu.data)"> +Add Category </div>
-		<div ng-repeat="submenu in menu.data track by $index" submenu></div>
+		<div ng-repeat="submenu in menu.data" submenu></div>
 	</div>
 </div>

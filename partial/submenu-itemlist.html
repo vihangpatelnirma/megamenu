@@ -2,6 +2,7 @@
 	
 	<div ng-click="subsubmenu.showEdit=!subsubmenu.showEdit">
 		{{subsubmenu.name}}
+		<span ng-if="subsubmenu.isNew" class="new-item">New</span>
 	</div>
 	<div ng-if="subsubmenu.showEdit" class="mega-menu-edit">
 		<div class="padding-10">
@@ -9,6 +10,14 @@
 		</div>
 		<div class="padding-10">
 			Href  : <input ng-model="subsubmenu.href">
+		</div>
+		<div class="padding-10">
+			isNew  : <input type="checkbox" ng-model="subsubmenu.isNew">
+		</div>
+		<div>
+			<div class="button delete-button" ng-click="deleteSubSubMenu($parent.$parent.$index, $index)">
+				&nbsp;Delete&nbsp;
+			</div>
 		</div>
 	</div>
 </div>

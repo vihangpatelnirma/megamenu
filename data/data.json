@@ -12,7 +12,8 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_longkurti#catId=10021&style=long kurti&pageId=1&",
-            "name": "Long kurti"
+            "name": "Long kurti",
+            "isNew" : true
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_shortkurti#catId=10021&style=short kurti&pageId=1&",
@@ -24,7 +25,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_aline#catId=10021&style=a line&pageId=1&",
-            "name": "A line Kurtis<span>New</span>",
+            "name": "A line Kurtis ",
             "isNew": true
           },
           {
@@ -50,12 +51,13 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_designer#catId=10024&style=designer&pageId=1&",
-            "name": "Designer <span>New</span>",
+            "name": "Designer  ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_traditional#catId=10024&style=traditional&pageId=1&",
-            "name": "Traditional"
+            "name": "Traditional",
+            "isNew" : true
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_seeall#catId=10024&pageId=1&",
@@ -88,7 +90,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/gowns/?MID=megamenu_casualwear_contemporarywear_dresses#catId=10025&type=dress&pageId=1&",
-            "name": "Dresses <span>New</span>",
+            "name": "Dresses  ",
             "isNew": true
           },
           {
@@ -102,7 +104,8 @@
         "data": [
           {
             "href": "http://www.craftsvilla.com/womens-clothing/palazzos/?MID=megamenu_casualwear_bottomwear_palazzos#catId=10020&type=palazzos&pageId=1&",
-            "name": "Palazzos"
+            "name": "Palazzos",
+            "isNew" : true
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/churidars-salwars-leggings/?MID=megamenu_casualwear_bottomwear_harems#catId=10027&type=harem&pageId=1&",
@@ -114,7 +117,8 @@
           },
           {
             "href": "http://www.craftsvilla.com/searchresults?searchby=product&q=dhoti&MID=megamenu_casualwear_bottomwear_dhotis",
-            "name": "Dhotis"
+            "name": "Dhotis",
+            "isNew" : true
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/palazzos/?MID=megamenu_casualwear_bottomwear_pants#catId=10020&type=pant&pageId=1&",
@@ -177,7 +181,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/sarees/georgette-sarees/?MID=megamenu_saree_fabric_georgette",
-            "name": "Georgette <span>New</span>",
+            "name": "Georgette  ",
             "isNew": true
           },
           {
@@ -215,7 +219,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/sarees/?MID=megamenu_sarees_work_embroidery#catId=10015&saree-work=embroidered&pageId=1&",
-            "name": "Embroidery<span>New</span>",
+            "name": "Embroidery ",
             "isNew": true
           },
           {
@@ -232,7 +236,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/sarees/?MID=megamenu_sarees_work_zariwork#catId=10015&saree-work=zari work&pageId=1&",
-            "name": "Zari work<span>New</span>",
+            "name": "Zari work ",
             "isNew": true
           },
           {
@@ -271,7 +275,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/sarees/?MID=megamenu_sarees_style_contemporary#catId=10015&style=contemporary&pageId=1&",
-            "name": "Contemporary<span>New</span>",
+            "name": "Contemporary ",
             "isNew": true
           },
           {
@@ -399,7 +403,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_contemporary#catId=10022&price=1000_2000,2000_5000,5000_0&style=contemporary&pageId=1&",
-            "name": "Contemporary<span>New</span>",
+            "name": "Contemporary ",
             "isNew": true
           },
           {
@@ -437,7 +441,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_georgette#catId=10022&kurta-fabric=georgette&pageId=1&",
-            "name": "Georgette<span>New</span>",
+            "name": "Georgette ",
             "isNew": true
           },
           {
@@ -463,7 +467,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_party#catId=10022&price=1000_2000,2000_5000,5000_0&occasion=party&pageId=1&",
-            "name": "Party<span>New</span>",
+            "name": "Party ",
             "isNew": true
           },
           {
@@ -538,7 +542,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_pastel-lehengas#catId=10018&lehenga-color=beige,pastel,pink,yellow&pageId=1&",
-            "name": "Pastel Lehengas<span>New</span>",
+            "name": "Pastel Lehengas ",
             "isNew": true
           },
           {
@@ -564,7 +568,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_wedding#catId=10018&occasion=wedding&pageId=1&",
-            "name": "Wedding<span>New</span>",
+            "name": "Wedding ",
             "isNew": true
           },
           {
@@ -590,7 +594,7 @@
         "data": [
           {
             "href": "http://www.craftsvilla.com/womens-clothing/lehangas/?MID=megamenu_lehengas_style_designer#catId=10018&style=designer&pageId=1&",
-            "name": "Designer<span>New</span>",
+            "name": "Designer ",
             "isNew": true
           },
           {
@@ -640,7 +644,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_net_tissue#catId=10018&lehenga-fabric=chantilly net,net,super net,tissue&pageId=1&",
-            "name": "Net / Tissue <span>New</span>",
+            "name": "Net / Tissue  ",
             "isNew": true
           },
           {
@@ -691,7 +695,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/searchresults?searchby=product&q=temple&MID=megamenu_accessories_topselling_temple",
-            "name": "Temple Jewellery<span>New</span>",
+            "name": "Temple Jewellery ",
             "isNew": true
           },
           {
@@ -725,7 +729,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/jewellery/earrings/?MID=megamenu_accessories_jewellery_earrings",
-            "name": "Earrings<span>New</span>",
+            "name": "Earrings ",
             "isNew": true
           },
           {
@@ -755,12 +759,12 @@
         "data": [
           {
             "href": "http://www.craftsvilla.com/accessories/wallets-purses/clutches/?MID=megamenu_accessories_bags_clutches",
-            "name": "Clutches<span>New</span>",
+            "name": "Clutches ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/accessories/bags/potli-bags/?MID=megamenu_accessories_bags_potlibags",
-            "name": "Potli Bags <span>New</span>",
+            "name": "Potli Bags  ",
             "isNew": true
           },
           {
@@ -794,7 +798,7 @@
           },
           {
             "href": "http://www.craftsvilla.com/womens-clothing/dupattas-stoles-scarves/dupattas/?MID=megamenu_accessories_accessories_dupattas",
-            "name": "Dupattas<span>New</span>",
+            "name": "Dupattas ",
             "isNew": true
           },
           {
@@ -1179,12 +1183,12 @@
         "data": [
           {
             "href": "http://www.craftsvilla.com/bath-beauty/haircare/?MID=megamenu_personalcare_beautycare_haircare",
-            "name": "Hair Care<span>New</span>",
+            "name": "Hair Care ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/bath-beauty/skincare/?MID=megamenu_personalcare_beautycare_skincare",
-            "name": "Skin Care <span>New</span>",
+            "name": "Skin Care  ",
             "isNew": true
           },
           {
@@ -1283,7 +1287,7 @@
           },
           {
             "href": "http://www.placeoforigin.in/staples/tea-49?utm_source=CVHome",
-            "name": "Tea <span>New</span>",
+            "name": "Tea  ",
             "isNew": true
           },
           {
@@ -1305,7 +1309,7 @@
         "data": [
           {
             "href": "http://www.craftsvilla.com/food-health/ayurvedic-health/?MID=megamenu_personalcare_healthcare_ayurvedic",
-            "name": "Ayurvedic<span>New</span>",
+            "name": "Ayurvedic ",
             "isNew": true
           },
           {
@@ -1318,27 +1322,27 @@
           },
           {
             "href": "http://www.craftsvilla.com/cvfeeds/beautyproducts-thenaturesco-craftsvilla?MID=megamenu_personalcare_brands_thenaturesco",
-            "name": "The Nature's co <span>New</span>",
+            "name": "The Nature's co  ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/cvfeeds/beautyproducts-biotique-craftsvilla?MID=megamenu_personalcare_brands_biotique",
-            "name": "Biotique<span>New</span>",
+            "name": "Biotique ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/cvfeeds/beautyproducts-barva-craftsvilla?MID=megamenu_personalcare_brands_barvaskintherapie",
-            "name": "Barva Skin Therapie<span>New</span>",
+            "name": "Barva Skin Therapie ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/cvfeeds/beautyproducts-vrikshalinatural-craftsvilla?MID=megamenu_personalcare_brands_vrikshali",
-            "name": "Vrikshali <span>New</span>",
+            "name": "Vrikshali  ",
             "isNew": true
           },
           {
             "href": "http://www.craftsvilla.com/cvfeeds/beautyproducts-auravedic-craftsvilla?MID=megamenu_personalcare_brands_auravedic",
-            "name": "Auravedic <span>New</span>",
+            "name": "Auravedic  ",
             "isNew": true
           },
           {
