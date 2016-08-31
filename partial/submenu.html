@@ -1,0 +1,18 @@
+<div class="subsubmenu container">
+	<div class="container">
+		<div ng-click="submenu.showEdit=!submenu.showEdit">
+			{{submenu.name}}
+		</div>
+		<div ng-if="submenu.showEdit" class="mega-menu-edit">
+			<div class="padding-10">
+				Title : <input type="text" ng-model="submenu.name">
+			</div>
+			<div class="padding-10">
+				Href  : <input ng-model="submenu.href">
+			</div>
+		</div>
+	</div>
+	<ul>
+	<li ng-repeat="subsubmenu in submenu.data" submenu-itemlist></li>
+	</ul>
+</div>

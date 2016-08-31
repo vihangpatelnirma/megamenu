@@ -8,8 +8,14 @@ angular.module('megamenu.directive')
 	}])
 	.directive('submenu' , [function(){
 		return { 
-			restrict: 'E',
+			restrict: 'A',
 			templateUrl: 'partial/submenu.html'
+		}
+	}])
+	.directive('submenuItemlist' , [function(){
+		return { 
+			restrict: 'A',
+			templateUrl: 'partial/submenu-itemlist.html'
 		}
 	}])
 	.directive('menu' , [function(){

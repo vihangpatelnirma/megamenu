@@ -1,6 +1,10 @@
-<div>
-	{{menu.name}}
-	<div class="edit-button" ng-click="menu.showEdit=!menu.showEdit"></div>
+<div class="container">
+	<div ng-class="menu.show ? 'menu-selected' : ''">
+		<div ng-click="menuSelected($index)">
+			&nbsp;&nbsp;&nbsp;{{menu.name}}&nbsp;&nbsp;&nbsp;
+		</div>
+		<div class="edit-button" ng-click="menu.showEdit=!menu.showEdit"></div>
+	</div>
 	<div ng-if="menu.showEdit" class="mega-menu-edit">
 		<div class="padding-10">
 			Title : <input type="text" ng-model="menu.name">
@@ -9,5 +13,8 @@
 			Href  : <input ng-model="menu.href">
 		</div>
 	</div>
-	<submenu></submenu>
+	<div ng-show="menu.show" class="submenu">
+		<div class="button" ng-click="addSubMenu(menu.data)"> +Add Category </div>
+		<div ng-repeat="submenu in menu.data track by $index" submenu></div>
+	</div>
 </div>
