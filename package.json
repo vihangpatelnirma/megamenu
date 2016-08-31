@@ -1,0 +1,14 @@
+{
+  "name": "megamenu",
+  "version": "1.0.0",
+  "description": "Mega menu UI interface",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "angular": "^1.4.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
