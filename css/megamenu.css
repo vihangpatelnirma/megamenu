@@ -115,3 +115,7 @@ strip > div {
  .download-button:hover{
  	cursor: pointer;
  }
+
+ .broker-link-button { 
+ 	margin-left: 20px;
+  }

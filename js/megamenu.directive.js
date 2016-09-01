@@ -18,6 +18,12 @@ angular.module('megamenu.directive')
 			templateUrl: 'partial/submenu-itemlist.html'
 		}
 	}])
+	.directive('linkChecker' , [function(){
+		return { 
+			restrict: 'E',
+			templateUrl: 'partial/link-checker.html'
+		}
+	}])
 	.directive('menu' , [function(){
 		return { 
 			restrict: 'A',

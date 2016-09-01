@@ -75,6 +75,38 @@ angular.module('megamenu')
 			console.log($scope.data);
 		}
 
+		$scope.checkBrokenLinks = function(){
+			$scope.requestCount = 0;
+			$scope.responseCount = 0;
+			var data = $scope.data,
+				i , j , k;
+			for(i = 0 ; i < data.length ; i++){
+				$scope.checkLink(data[i]);
+				for(j = 0 ; j < data[i].data.length ; j++){
+					$scope.checkLink(data[i].data[j]);
+					for(k = 0 ; k < data[i].data[j].data.length ; k++){
+						$scope.checkLink(data[i].data[j].data[k]);
+					}
+				}
+			}
+		}
+
+		$scope.checkLink = function(data){
+			console.log(data);
+			data.href && (Network.checkLink({ url : data.href}).then($scope.onResponse,$scope.onError),
+				$scope.requestCount++);
+		}
+
+		$scope.onResponse = function(response){
+			console.info(response);
+			$scope.responseCount++;
+		}
+
+		$scope.onError = function(response){
+			console.warn(response);
+			$scope.responseCount++;
+		}
+
 		Network.fetch().success(function(response){
 			$scope.data = response;
 		});
