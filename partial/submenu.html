@@ -1,6 +1,6 @@
 <div class="subsubmenu container">
 	<div class="container">
-		<div ng-click="submenu.showEdit=!submenu.showEdit">
+		<div ng-click="submenu.showEdit=!submenu.showEdit" title="{{submenu.href}}">
 			{{submenu.name}}
 		</div>
 		<div ng-if="submenu.showEdit" class="mega-menu-edit">
@@ -14,10 +14,30 @@
 				<div class="button delete-button" ng-click="deleteSubMenu($index)">
 					&nbsp;Delete&nbsp;
 				</div>
+				<a href="{{submenu.href}}" target="_blank">
+					<div class="button delete-button">
+						&nbsp;Visit Link&nbsp;
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
 	<ul>
 	<li ng-repeat="subsubmenu in submenu.data" submenu-itemlist></li>
+	<div class="container image-container">
+		<div class="big-image">
+			<img ng-src="{{submenu.images[0].href}}">
+		</div>
+		<div class="big-image">
+			<div class="small-image">
+				<img ng-src="{{submenu.images[1].href}}">
+			</div>
+			<div class="small-image">
+				<img ng-src="{{submenu.images[2].href}}">
+			</div>
+		</div>
+	</div>
+	<div class="button" ng-click="addSubSubMenu(submenu.data)"> +Add Item </div>
 	</ul>
+	
 </div>

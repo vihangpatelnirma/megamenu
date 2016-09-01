@@ -1,6 +1,6 @@
 <div class="container">
 	
-	<div ng-click="subsubmenu.showEdit=!subsubmenu.showEdit">
+	<div ng-click="subsubmenu.showEdit=!subsubmenu.showEdit" title="{{subsubmenu.href}}">
 		{{subsubmenu.name}}
 		<span ng-if="subsubmenu.isNew" class="new-item">New</span>
 	</div>
@@ -18,6 +18,11 @@
 			<div class="button delete-button" ng-click="deleteSubSubMenu($parent.$parent.$index, $index)">
 				&nbsp;Delete&nbsp;
 			</div>
+			<a href="{{subsubmenu.href}}" target="_blank">
+				<div class="button delete-button">
+					&nbsp;Visit Link&nbsp;
+				</div>
+			</a>
 		</div>
 	</div>
 </div>

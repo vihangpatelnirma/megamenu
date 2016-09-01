@@ -35,6 +35,14 @@ angular.module('megamenu')
 			return menu;
 		}
 
+		$scope.addSubSubMenu = function(menu){
+			menu.push({
+				name : 'New sub type',
+				href : 'www.craftsvilla.com',
+			});
+			return menu;
+		}
+
 		$scope.deleteMenu = function(index){
 			if(!confirm("Do you want to delete main menu")){
 				return;

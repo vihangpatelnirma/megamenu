@@ -150,12 +150,6 @@
             "name": "Salwar Kameez"
           }
         ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
       }
     ],
     "images": [
@@ -258,7 +252,7 @@
         "data": [
           {
             "href": "http://www.craftsvilla.com/womens-clothing/sarees/?MID=megamenu_sarees_style_designer#catId=10015&style=designer&pageId=1&",
-            "name": "Designer<span>New<span>",
+            "name": "Designer",
             "isNew": true
           },
           {
@@ -326,18 +320,6 @@
             "href": "http://www.craftsvilla.com/womens-clothing/blouses/?MID=megamenu_sarees_blouses_designer#catId=10016&style=designer&pageId=1&",
             "name": "Designer"
           }
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
         ]
       }
     ],
@@ -490,18 +472,6 @@
             "href": "http://www.craftsvilla.com/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_seeall#catId=10022&pageId=1&",
             "name": "See All"
           }
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
         ]
       }
     ],
@@ -656,18 +626,6 @@
             "name": "See All"
           }
         ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
       }
     ],
     "images": [
@@ -810,18 +768,6 @@
             "name": "Stoles"
           }
         ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
       }
     ],
     "images": [
@@ -954,18 +900,6 @@
             "href": "http://www.craftsvilla.com/cvfeeds/bestselling-fuzion-couture-mens-kurtas-and-kurta-pyjamas-online-craftsvilla/?MID=megamenu_4_5_mensfashion_fuzioncouture_741",
             "name": "Fuzion Couture"
           }
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
         ]
       }
     ],
@@ -1147,18 +1081,6 @@
             "href": "http://www.craftsvilla.com/home-decor/?MID=megamenu_4_9_Homedecor_SeeAll",
             "name": "See All"
           }
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
         ]
       }
     ],
@@ -1349,18 +1271,6 @@
             "href": "http://www.craftsvilla.com/searchresults?searchby=product&q=health&MID=megamenu_beauty&lifestyle_healthcare_seall",
             "name": "See All"
           }
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
-        ]
-      },
-      {
-        "name": "",
-        "data": [
-          
         ]
       }
     ],

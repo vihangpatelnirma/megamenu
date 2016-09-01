@@ -1,6 +1,6 @@
 <div class="container">
 	<div ng-class="menu.show ? 'menu-selected' : ''">
-		<div ng-click="menuSelected($index)">
+		<div ng-click="menuSelected($index)" title="{{menu.href}}">
 			&nbsp;&nbsp;&nbsp;{{menu.name}}&nbsp;&nbsp;&nbsp;
 		</div>
 		<div class="edit-button" ng-click="menu.showEdit=!menu.showEdit"></div>
@@ -16,6 +16,11 @@
 			<div class="button delete-button" ng-click="deleteMenu($index)">
 				&nbsp;Delete&nbsp;
 			</div>
+			<a href="{{menu.href}}" target="_blank">
+				<div class="button delete-button">
+					&nbsp;Visit Link&nbsp;
+				</div>
+			</a>
 		</div>
 	</div>
 	<div ng-show="menu.show" class="submenu">
