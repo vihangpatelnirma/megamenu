@@ -119,3 +119,7 @@ strip > div {
  .broker-link-button { 
  	margin-left: 20px;
   }
+
+  .image-container {
+  	z-index: -1;
+  }

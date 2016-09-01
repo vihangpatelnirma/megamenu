@@ -24,19 +24,6 @@
 	</div>
 	<ul>
 	<li ng-repeat="subsubmenu in submenu.data" submenu-itemlist></li>
-	<div class="container image-container">
-		<div class="big-image">
-			<img ng-src="{{submenu.images[0].href}}">
-		</div>
-		<div class="big-image">
-			<div class="small-image">
-				<img ng-src="{{submenu.images[1].href}}">
-			</div>
-			<div class="small-image">
-				<img ng-src="{{submenu.images[2].href}}">
-			</div>
-		</div>
-	</div>
 	<div class="button" ng-click="addSubSubMenu(submenu.data)"> +Add Item </div>
 	</ul>
 	

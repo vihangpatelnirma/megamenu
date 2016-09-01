@@ -26,5 +26,23 @@
 	<div ng-show="menu.show" class="submenu">
 		<div class="button" ng-click="addSubMenu(menu.data)"> +Add Category </div>
 		<div ng-repeat="submenu in menu.data" submenu></div>
+		<div class="container image-container">
+		<div class="big-image">
+			<div>
+				Image URL : <input type="text" ng-model="menu.images[0].url" name="">
+				Href : <input type="text" ng-model="menu.images[0].href" name="">
+			</div>
+		</div>
+		<div class="big-image">
+			<div>
+				Image URL : <input type="text" ng-model="menu.images[1].url" name="">
+				Href : <input type="text" ng-model="menu.images[1].href" name="">
+			</div>
+			<div>
+				Image URL : <input type="text" ng-model="menu.images[2].url" name="">
+				Href : <input type="text" ng-model="menu.images[2].href" name="">
+			</div>
+		</div>
+	</div>
 	</div>
 </div>

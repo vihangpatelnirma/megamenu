@@ -73,6 +73,13 @@ angular.module('megamenu')
 
 		$scope.downloadJSON = function(){
 			console.log($scope.data);
+			setTimeout(function() {
+				var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.data));
+				var dlAnchorElem = document.getElementById('download-button');
+				dlAnchorElem.setAttribute("href",     dataStr     );
+				dlAnchorElem.setAttribute("download", "megamenu.json");
+				dlAnchorElem.click();
+			},100);
 		}
 
 		$scope.checkBrokenLinks = function(){
