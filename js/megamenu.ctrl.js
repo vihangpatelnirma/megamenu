@@ -73,8 +73,9 @@ angular.module('megamenu')
 
 		$scope.downloadJSON = function(){
 			console.log($scope.data);
+			var allowedArray = ['data' , 'href' , 'url' , 'images' , 'name' , 'isNew'];
 			setTimeout(function() {
-				var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.data));
+				var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.data,allowedArray,'\t'));
 				var dlAnchorElem = document.getElementById('download-button');
 				dlAnchorElem.setAttribute("href",     dataStr     );
 				dlAnchorElem.setAttribute("download", "megamenu.json");

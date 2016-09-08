@@ -61,7 +61,7 @@ strip > div {
 .submenu {
 	width: 94%;
 	position: fixed;
-	left: 3%;
+	left: calc(3% - 10px);
 	margin-top: 20px;
 	background: #eee4d1;
 	padding: 10px;
