@@ -1,0 +1,722 @@
+<html>
+	<head><title>Converters</title></head>
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+	 	function converter(object){
+	 		var result = [];
+
+	 		for(var key in object){
+	 			var obj = {};
+	 			obj.name = key;
+	 			obj.data = [];
+	 			var data = object[key];
+
+	 			for(var subkey in data){
+	 				var subObj = {};
+	 				subObj.name = subkey;
+	 				subObj.data = data[subkey];
+	 				obj.data.push(subObj);
+	 			}
+	 			result.push(obj);
+	 		}
+	 		$("textarea").val(JSON.stringify(result));
+	 		return result;
+	 	}
+	</script>
+	<script type="text/javascript">
+		window.onload = makeMegaMenu;
+		function makeMegaMenu() {	
+			var result = [];
+			var $li = $("[data-mega-menu] > li");
+			$li.each(function(index,item){
+				var obj = {};
+				$.extend(obj, getMenuName(item));
+				obj.data = getSubMenu(item);
+				obj.images = getImages(item);
+				result.push(obj);
+			});
+
+			console.log(JSON.stringify(result));
+			return result;
+		}
+
+		function getMenuName(item){
+			var $a = $(item).find("a").eq(0);
+			return { name : $a.text().trim() , href : $a.attr('href')};
+		}
+
+		function getSubMenu(item){
+			var $li = $(item).find(".sub-menu-wrapper > ul > li");
+			var result = [];
+			$li.each(function(index,item){
+				result.push(getSubSubMenu(item));
+			});
+			return result;
+		}
+
+		function getSubSubMenu(item){
+			var obj = {};
+			var $a = $(item).find("[click-menu]");
+			obj.name = $a.text().trim();
+			$a.attr('href') && (obj.href = $a.attr('href'));
+			obj.data = [];
+			var $li = $(item).find("ul > li");
+			$li.each(function(index,item){
+				var innerObject = {};
+				innerObject.href = $(item).find("a").attr('href');
+				innerObject.name = $(item).find("a").text().trim();
+				innerObject.isNew = $(item).find("a").html().indexOf("<span>New</span>") != -1
+				if(innerObject.name == ''){
+					return;
+				}
+				obj.data.push(innerObject);
+			});
+			return obj;
+		}
+
+		function getImages(item){
+			var $images = $(item).find(".image_box").find("a");
+			var images = [];
+
+			$images.each(function(index,item){
+				images.push({
+					href  : $(item).attr('href'),
+					url : $(item).find('img').attr('data-src')
+				})
+			});
+
+			return images;
+		}
+	</script>
+	<body>
+		<ul data-mega-menu="">
+    			<li class="visible-xs hidden-md shop-by">Shop by <span data-shop-by-close="" class="icon icon-close"></span></li>
+    			<li>
+    				<a first-click="" href="/store-front/casualwear/">CASUAL WEAR <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Kurtis<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/kurtis-tunics/kurtis/?MID=megamenu_casualwear_kurtis_casualkurtis#feedid=20&amp;occasion=casual&amp;pageId=1&amp;">Casual Kurtis</a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_longkurti#catId=10021&amp;style=long kurti&amp;pageId=1&amp;">Long kurti</a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_shortkurti#catId=10021&amp;style=short kurti&amp;pageId=1&amp;">Short kurti</a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_straight#catId=10021&amp;style=straight&amp;pageId=1&amp;">Straight Suit</a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_kurtis_aline#catId=10021&amp;style=a line&amp;pageId=1&amp;">A line Kurtis <span>New</span></a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/kurtis?MID=megamenu_casualwear_kurtis_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Skirts <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_kneelength#catId=10024&amp;length=knee-length&amp;pageId=1&amp;">Knee-length</a></li>
+							<li><a href="/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_3/4thlength#catId=10024&amp;length=3/4th length&amp;pageId=1&amp;">3/4th length</a></li>
+							<li><a href="/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_anklelength#catId=10024&amp;length=ankle-length&amp;pageId=1&amp;">Ankle-length</a></li>
+							<li><a href="/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_designer#catId=10024&amp;style=designer&amp;pageId=1&amp;">Designer <span>New</span></a></li>
+							<li><a href="/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_traditional#catId=10024&amp;style=traditional&amp;pageId=1&amp;">Traditional</a></li>
+							<li><a href="/womens-clothing/skirts/?MID=megamenu_casualwear_skirts_seeall#catId=10024&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Fusion Wear <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/gowns/?MID=megamenu_casualwear_contemporarywear_gowns#catId=10025&amp;type=gown&amp;pageId=1&amp;">Gowns</a></li>
+							<li><a href="/womens-clothing/kaftans/?MID=megamenu_casualwear_topwear_kaftans">Kaftans</a></li>
+							<li><a href="/womens-clothing/cholis/?MID=megamenu_casualwear_topwear_tops#catId=10019&amp;type=top&amp;pageId=1&amp;">Tops</a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/?MID=megamenu_casualwear_topwear_tunics#catId=10021&amp;type=tunic&amp;pageId=1&amp;">Tunics</a></li>
+							<li><a href="/womens-clothing/cholis/?MID=megamenu_casualwear_topwear_cholis#catId=10019&amp;type=choli&amp;pageId=1&amp;">Cholis</a></li>
+							<li><a href="/womens-clothing/gowns/?MID=megamenu_casualwear_contemporarywear_dresses#catId=10025&amp;type=dress&amp;pageId=1&amp;">Dresses <span>New</span></a></li>
+							<li><a href="/womens-clothing/jumpsuits/?MID=megamenu_casualwear_contemporarywear_jumpsuits">Jumpsuits</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Bottom Wear <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/palazzos/?MID=megamenu_casualwear_bottomwear_palazzos#catId=10020&amp;type=palazzos&amp;pageId=1&amp;">Palazzos</a></li>
+							<li><a href="/womens-clothing/churidars-salwars-leggings/?MID=megamenu_casualwear_bottomwear_harems#catId=10027&amp;type=harem&amp;pageId=1&amp;">Harems</a></li>
+							<li><a href="/womens-clothing/churidars-salwars-leggings/?MID=megamenu_casualwear_bottomwear_leggings#catId=10027&amp;type=legging&amp;pageId=1&amp;">Leggings</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=dhoti&amp;MID=megamenu_casualwear_bottomwear_dhotis">Dhotis</a></li>
+							<li><a href="/womens-clothing/palazzos/?MID=megamenu_casualwear_bottomwear_pants#catId=10020&amp;type=pant&amp;pageId=1&amp;">Pants</a></li>
+							<li><a href="/womens-clothing/churidars-salwars-leggings/?MID=megamenu_casualwear_bottomwear_churidars#catId=10027&amp;type=churidar&amp;pageId=1&amp;">Churidars</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Islamic Wear <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/burquas-hijabs/?MID=megamenu_fashion&amp;lifestyle_islamicwear_abayas_burkas#catId=10028&amp;type=burqua&amp;pageId=1&amp;">Abayas/Burkas</a></li>
+							<li><a href="/womens-clothing/burquas-hijabs/?MID=megamenu_fashion&amp;lifestyle_islamicwear_hijab#catId=10028&amp;type=hijab&amp;pageId=1&amp;">Hijab</a></li>
+							<li><a href="/womens-clothing/kurtis-tunics/kurtis/?MID=megamenu_fashion&amp;lifestyle_islamicwear_kurtisandtunics#feedid=20&amp;type=kurti,tunic&amp;pageId=1&amp;">Kurtis and Tunics</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=salwar+kameez&amp;MID=megamenu_fashion&amp;lifestyle_islamicwear_salwarkameez">Salwar Kameez</a></li>
+						</ul>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/latest-fusion-dresses-20200.html?MID=megamenu_casualwear_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/fusion_frenzy170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/fusion_frenzy170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="/store-front/sarees/">SAREES <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">By Fabric <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/sarees/cotton-sarees/?MID=megamenu_sarees_fabric_cotton">Cotton</a></li>
+							<li><a href="/womens-clothing/sarees/chiffon-sarees/?MID=megamenu_sarees_fabric_chiffon">Chiffon</a></li>
+							<li><a href="/womens-clothing/sarees/georgette-sarees/?MID=megamenu_saree_fabric_georgette">Georgette<span>New</span></a></li>
+							<li><a href="/womens-clothing/sarees/silk-sarees/?MID=megamenu_sarees_fabric_silk">	Silk</a></li>
+							<li><a href="/womens-clothing/sarees/net-sarees/?MID=megamenu_sarees_fabric_net">Net</a></li>
+							<li><a href="/womens-clothing/sarees/satin-sarees/?MID=megamenu_sarees_fabric_satin">Satin</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_fabric_tissue#catId=10015&amp;saree-fabric=tissue&amp;pageId=1&amp;">Tissue</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_fabric_khadi#catId=10015&amp;saree-fabric=khadi&amp;pageId=1&amp;">Khadi</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_fabric_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Work <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/sarees/banarasi-sarees/?MID=megamenu_sarees_work_banarasi">Banarasi</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_work_embroidery#catId=10015&amp;saree-work=embroidered&amp;pageId=1&amp;">Embroidery<span>New</span></a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_work_embellishments#catId=10015&amp;saree-work=stone embellished&amp;pageId=1&amp;">Embellishments</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_work_bhandej#catId=10015&amp;saree-work=bhandhej&amp;pageId=1&amp;">Bhandej</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_work_chikankari#catId=10015&amp;saree-work=chikankari&amp;pageId=1&amp;">Chikankari</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_work_zariwork#catId=10015&amp;saree-work=zari work&amp;pageId=1&amp;">Zari work<span>New</span></a></li>
+							<li><a href="/womens-clothing/sarees/bandhani-sarees/?MID=megamenu_sarees_work_bandhani">Bandhani</a></li>
+							<li><a href="/womens-clothing/sarees/kanchivaram-sarees/?MID=megamenu_sarees_work_kanchivaram">Kanjivaram</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_work_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Style<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_designer#catId=10015&amp;style=designer&amp;pageId=1&amp;">Designer<span>New</span></a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_bollywood#catId=10015&amp;style=bollywood&amp;pageId=1&amp;">Bollywood</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_halfhalfsaree#catId=10015&amp;style=half half saree&amp;pageId=1&amp;">Half - Half saree</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_lehengasaree#catId=10015&amp;style=lehenga saree&amp;pageId=1&amp;">Lehenga Saree</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_contemporary#catId=10015&amp;style=contemporary&amp;pageId=1&amp;">Contemporary<span>New</span></a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_traditional#catId=10015&amp;style=traditional&amp;pageId=1&amp;">Traditional</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_style_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Occassion <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_occassion_festival#catId=10015&amp;occasion=festival&amp;pageId=1&amp;">Festival</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_occassion_party#catId=10015&amp;occasion=party&amp;pageId=1&amp;">Party</a></li>
+							<li><a href="/womens-clothing/sarees/wedding-sarees/?MID=megamenu_sarees_occassion_wedding">Wedding</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_occassion_casual#catId=10015&amp;occasion=casual&amp;pageId=1&amp;">Casual</a></li>
+							<li><a href="/womens-clothing/sarees/?MID=megamenu_sarees_occassion_ceremonial#catId=10015&amp;occasion=ceremonial&amp;pageId=1&amp;">Ceremonial</a></li>
+							<li style="margin-top:10px; float:left;"><a><strong>Blouses</strong><span>New</span></a></li>
+							<li><a href="/womens-clothing/blouses/?MID=megamenu_sarees_blouses_readymade#catId=10016&amp;stitching-type=readymade&amp;pageId=1&amp;">Readymade</a></li>
+							<li><a href="/womens-clothing/blouses/?MID=megamenu_sarees_blouses_contemporary#catId=10016&amp;style=contemporary&amp;pageId=1&amp;">Contemporary</a></li>
+							<li><a href="/womens-clothing/blouses/?MID=megamenu_sarees_blouses_designer#catId=10016&amp;style=designer&amp;pageId=1&amp;">Designer</a></li>
+						</ul>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/sarees-offers.html?MID=megamenu_sarees_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_selling_saree.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_selling_saree.jpg" alt="">
+                      </a>
+    									<a href="/cvfeeds/best-sarees-offers-below-1999.html?MID=megamenu_sarees_MB_2">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Sarees_Under_1699.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Sarees_Under_1699.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/occasional-wear-sarees-under-1299-20178.html?MID=megamenu_sarees_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Designer_Drapes_170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Designer_Drapes_170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="/store-front/salwar-suits/">SALWAR SUITS <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Top Selling <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/anarkalis/?MID=megamenu_salwarsuits_topselling_anarkalis#catId=10023&amp;price=1000_2000,2000_5000,5000_0&amp;pageId=1&amp;">Anarkalis</a></li>
+							<li><a href="/cvfeeds/women-patiala-patiyala.html?MID=megamenu_salwarsuit_topselling_patiala">Patiala</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_designer#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;style=designer&amp;pageId=1&amp;">Straight Suits</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuit_topselling_designer#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;style=designer&amp;pageId=1&amp;">Designer Suits</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=churidar&amp;MID=megamenu_salwarsuits_topselling_gowns#price=1000_2000&amp;pageId=1&amp;">Churidar Suits</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=gown&amp;price=1000_2000,2000_5000,5000_0&amp;pageId=1&amp;&amp;windowwidth=1326">Gowns<span>New</span></a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_topselling_seeall#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Style <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_straightsuit#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;style=straight suit&amp;pageId=1&amp;">Straight Suit</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_alinestyle#catId=10022&amp;style=a line style&amp;pageId=1&amp;">A line style</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_contemporary#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;style=contemporary&amp;pageId=1&amp;">Contemporary<span>New</span></a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_designer#catId=10022&amp;style=designer&amp;pageId=1&amp;">Designer</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_traditional#catId=10022&amp;style=traditional&amp;pageId=1&amp;">Traditional</a></li>
+							<li><a href="/womens-clothing/anarkalis/?MID=megamenu_salwarsuits_style_anarkali">Anarkali</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_style_seeall#catId=10022&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Fabric <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="//womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_cotton#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;kurta-fabric=cotton&amp;pageId=1&amp;">Cotton</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_silk#catId=10022&amp;kurta-fabric=silk&amp;pageId=1&amp;">Silk</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_khadi#catId=10022&amp;kurta-fabric=khadi&amp;pageId=1&amp;">Khadi</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_georgette#catId=10022&amp;kurta-fabric=georgette&amp;pageId=1&amp;">Georgette<span>New</span></a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_chiffon#catId=10022&amp;kurta-fabric=chiffon&amp;pageId=1&amp;">Chiffon</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_net#catId=10022&amp;kurta-fabric=net&amp;pageId=1&amp;">Net</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_fabric_seeall#catId=10022&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Occassion<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_festival#catId=10022&amp;occasion=festival&amp;pageId=1&amp;">Festival</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_party#catId=10022&amp;price=1000_2000,2000_5000,5000_0&amp;occasion=party&amp;pageId=1&amp;">Party<span>New</span></a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_wedding#catId=10022&amp;occasion=wedding&amp;pageId=1&amp;">Wedding</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_casual#catId=10022&amp;occasion=casual&amp;pageId=1&amp;">Casual</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_bridal#catId=10022&amp;occasion=bridal&amp;pageId=1&amp;">Bridal</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_ceremonial#catId=10022&amp;occasion=ceremonial&amp;pageId=1&amp;">Ceremonial</a></li>
+							<li><a href="/womens-clothing/salwar-suits/?MID=megamenu_salwarsuits_occasion_seeall#catId=10022&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/designer-anarkali-suits-high-price.html?MID=megamenu_salwar suits_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/anarkali_Under_1499.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/anarkali_Under_1499.jpg" alt="">
+                      </a>
+    									<a href="/cvfeeds/pakistani-salwar-suits.html?MID=megamenu_salwar suits_MB_2">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/straight_suits.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/straight_suits.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/women-patiala-patiyala.html?MID=megamenu_salwar suits_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/patialas170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/patialas170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="/store-front/lehengas/">LEHENGA <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Top Selling <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/searchresults?searchby=product&amp;q=bollywood+lehenga#pageId=1&amp;MID=megamenu_lehenga_topselling_bollywood ">Bollywood</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_designer#catId=10018&amp;style=designer&amp;pageId=1&amp;">Designer</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_partywear#catId=10018&amp;occasion=party&amp;pageId=1&amp;">Party wear</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_wedding#catId=10018&amp;occasion=wedding&amp;pageId=1&amp;">Wedding Special</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_pastel-lehengas#catId=10018&amp;lehenga-color=beige,pastel,pink,yellow&amp;pageId=1&amp;">Pastel Lehengas<span>New</span></a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_bridal-lehenga#catId=10018&amp;occasion=bridal&amp;pageId=1&amp;">Bridal Lehenga</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_topselling_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Occassion <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_festival#catId=10018&amp;occasion=festival&amp;pageId=1&amp;">Festival</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_party#catId=10018&amp;occasion=party&amp;pageId=1&amp;">Party</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_wedding#catId=10018&amp;occasion=wedding&amp;pageId=1&amp;">Wedding<span>New</span></a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_casual#catId=10018&amp;occasion=casual&amp;pageId=1&amp;">Casual</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_bridal#catId=10018&amp;occasion=bridal&amp;pageId=1&amp;">Bridal</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_ceremonial#catId=10018&amp;occasion=ceremonial&amp;pageId=1&amp;">Ceremonial</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_occasion_seeall#catId=10018&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Style<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_designer#catId=10018&amp;style=designer&amp;pageId=1&amp;">Designer<span>New</span></a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_traditional#catId=10018&amp;style=traditional&amp;pageId=1&amp;">Traditional</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_aline#catId=10018&amp;style=a line&amp;pageId=1&amp;">A Line</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_circular#catId=10018&amp;style=circular&amp;pageId=1&amp;">Circular</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_mermaidcut#catId=10018&amp;style=mermaid cut&amp;pageId=1&amp;">Mermaid Cut</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_straightcut#catId=10018&amp;style=straight cut&amp;pageId=1&amp;">Straight Cut</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_style_seeall#catId=10018&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">By Fabric <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_georgette#catId=10018&amp;lehenga-fabric=georgette&amp;pageId=1&amp;">Georgette</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_chiffon#catId=10018&amp;lehenga-fabric=chiffon&amp;pageId=1&amp;">Chiffon</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_cotton#catId=10018&amp;lehenga-fabric=cotton&amp;pageId=1&amp;">Cotton</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_silk#catId=10018&amp;lehenga-fabric=silk&amp;pageId=1&amp;">Silk</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_net_tissue#catId=10018&amp;lehenga-fabric=chantilly net,net,super net,tissue&amp;pageId=1&amp;">Net / Tissue <span>New</span></a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_satin#catId=10018&amp;lehenga-fabric=satin&amp;pageId=1&amp;">Satin</a></li>
+							<li><a href="/womens-clothing/lehangas/?MID=megamenu_lehengas_fabric_seeall#catId=10018&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<div class="image_box">
+
+							<!--pradeep <a href="/cvfeeds/lehenga-offers.html?MID=megamenu_lehenga_MB_1"><img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_sellling_lehenga.jpg" alt=""></a> -->
+							<a href="/brands/jashn?MID=megamenu_lehengas_MB_1"><img class="lazy-onload" alt="" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Jashn_megamenu.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Jashn_megamenu.jpg"></a>
+							<!-- <a href="/womens-clothing/lehangas/?MID=megamenu_lehenga_MB_2#catId=10018&occasion=wedding&pageId=1&"><img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/wedding_spl.jpg" alt=""></a> -->
+							<a href="/brands/chhabra-555?MID=megamenu_lehengas_MB_2"><img class="lazy-onload" alt="" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Chhabra-555_megamenu.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Chhabra-555_megamenu.jpg"></a>
+
+						</div>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/jewellery-offers.html?MID=megamenu_accessories_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_sellling_lehenga.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_sellling_lehenga.jpg" alt="">
+                      </a>
+    									<a href="/cvfeeds/pakistani-salwar-suits.html?MID=megamenu_salwar suits_MB_2">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/wedding_spl.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/wedding_spl.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/ethnic-wear-starting-from-1299-20177.html?MID=megamenu_lehenga_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Lovely_Lehenga_Sarees170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Lovely_Lehenga_Sarees170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="http://www.craftsvilla.com/accessories/">ACCESSORIES <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Top Selling <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/searchresults?searchby=product&amp;q=kundan+&amp;MID=megamenu_accesories_topselling_kundan">Kundan Jewellery</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=temple&amp;MID=megamenu_accessories_topselling_temple">Temple Jewellery<span>New</span></a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=terracotta&amp;MID=megamenu_accesories_topselling_teracotta">Teracotta Jewellery</a></li>
+							<li><a href="/accessories/watches/?MID=megamenu_accesories_topselling_watches">Watches</a></li>
+							<li><a href="/accessories/bags/?MID=megamenu_accessories_topselling_bags">Bags</a></li>
+							<li><a href="/jewellery/earrings/?MID=megamenu_accesories_topselling_jhumkas">Jhumkas</a></li>
+							<li><a href="/jewellery-jewelry/jewellery-sets.html?MID=megamenu_accesories_topselling_jewellerysets">Jewellery Sets</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Jewellery <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/jewellery/necklaces/?MID=megamenu_accessories_jewellery_necklaces">Necklaces</a></li>
+							<li><a href="/jewellery/earrings/?MID=megamenu_accessories_jewellery_earrings">Earrings<span>New</span></a></li>
+							<li><a href="/jewellery-jewelry/jewellery-sets.html?MID=megamenu_accessories_jwellery_jwellerysets">Jewellery Sets</a></li>
+							<li><a href="/jewellery/anklets/?MID=megamenu_accessories_jewellery_anklets">Anklets</a></li>
+							<li><a href="/jewellery/pendants/?MID=megamenu_accessories_jewellery_pendants">Pendants</a></li>
+							<li><a href="/jewellery/bracelets-bangles/?MID=megamenu_accessories_jewellery_bangles">Bangles</a></li>
+							<li><a href="/jewellery/mangalsutra/?MID=megamenu_accessories_jewellery_mangalsutra">Mangalsutra</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Bags<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/accessories/wallets-purses/clutches/?MID=megamenu_accessories_bags_clutches">Clutches<span>New</span></a></li>
+							<li><a href="/accessories/bags/potli-bags/?MID=megamenu_accessories_bags_potlibags">Potli Bags<span>New</span></a></li>
+							<li><a href="/accessories/bags/jhola-bags/?MID=megamenu_accessories_bags_jholabags">Jhola Bags</a></li>
+							<li><a href="/accessories/wallets-purses/wallets/?MID=megamenu_accessories_bags_wallets">Wallets</a></li>
+							<li><a href="/accessories/bags/tote-bags/?MID=megamenu_accessories_bags_totebags">Tote Bags</a></li>
+							<li><a href="/accessories/bags/leather-bags/?MID=megamenu_accessories_bags_leatherbags">Leather Bags</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Accessories <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/accessories/watches/?MID=megamenu_accessories_accessories_watches">Watches</a></li>
+							<li><a href="/accessories/wallets-purses/wallets/?MID=megamenu_accessories_accessories_wallets">Wallets</a></li>
+							<li><a href="/womens-clothing/dupattas-stoles-scarves/dupattas/?MID=megamenu_accessories_accessories_dupattas">Dupattas<span>New</span></a></li>
+							<li><a href="/accessories/footwear/?MID=megamenu_accessories_accessories_footwear">Footwear</a></li>
+							<li><a href="/womens-clothing/dupattas-stoles-scarves/stoles/?MID=megamenu_accessories_accessories_stoles">Stoles</a></li>
+						</ul>
+					</li>
+
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/jewellery-offers.html?MID=megamenu_accessories_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/bestselling_2.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/bestselling_2.jpg" alt="">
+                      </a>
+    									<a href="/cvfeeds/gold-jewellery-designs-feeds.html?MID=megamenu_accessories_MB_2">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/musthaves.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/musthaves.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/latest-offers-jewellery-20210.html?MID=megamenu_accessories_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Min_50_Off_170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Min_50_Off_170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="/store-front/mens-fashion/">MEN'S FASHION <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Kurtas<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/mens-fashion/sherwanis-kurtas/kurtas/?MID=megamenu_1_1_mensfashion_cottonkurtas#feedid=21&amp;kurta-sherwani-fabric=cotton,cotton blend&amp;pageId=1&amp;">Cotton Kurtas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/kurtas/?MID=megamenu_1_2_mensfashion_silkkurtas#feedid=21&amp;kurta-sherwani-fabric=dupion silk,cotton silk,silk,art silk,silk blend&amp;pageId=1&amp;">Silk Kurtas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/kurtas/?MID=megamenu_1_3_mensfashion_linenkurtas#feedid=21&amp;kurta-sherwani-fabric=linen&amp;pageId=1&amp;">Linen Kurtas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/kurtas/?MID=megamenu_1_4_mensfashion_casualwear#feedid=21&amp;occasion=casual&amp;pageId=1&amp;">Casualwear Kurtas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/kurtas/?MID=megamenu_1_5_mensfashion_eveningwear#feedid=21&amp;occasion=festival,ceremonial&amp;pageId=1&amp;">Eveningwear Kurtas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/kurtas/?MID=megamenu_1_6_mensfashion_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Kurta Pyjamas <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/cvfeeds/bestselling-mens-silk-kurta-pyjamas-megamenu-online-craftsvilla/?MID=megamenu_2_1_mensfashion_silkkurtapyjamas_844">Silk Kurta Pyjamas</a></li>
+							<li><a href="/cvfeeds/bestselling-mens-cotton-kurta-pyjamas-megamenu-online-craftsvilla/?MID=megamenu_2_2_mensfashion_cottonkurtapyjamas_846">Cotton Kurta Pyjamas</a></li>
+							<li><a href="/cvfeeds/bestselling-mens-jacquard-kurta-pyjamas-megamenu-online-craftsvilla/?MID=megamenu_2_3_mensfashion_jacquardkurtapyjamas_845">Jacquard Kurta Pyjamas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/?MID=megamenu_2_4_mensfashion_casualwear#catId=10079&amp;type=kurta-pyjamas&amp;occasion=casual&amp;pageId=1&amp;">Casualwear Kurta Pyjamas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/?MID=megamenu_2_5_mensfashion_eveningwear#catId=10079&amp;type=kurta-pyjamas&amp;occasion=festival,ceremonial&amp;pageId=1&amp;">Eveningwear Kurta Pyjamas</a></li>
+							<li><a href="/mens-fashion/sherwanis-kurtas/?MID=megamenu_2_6_mensfashion_seeall#catId=10079&amp;type=kurta-pyjamas&amp;pageId=1&amp;">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Collections <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/mens-fashion/sherwanis-kurtas/?MID=megamenu_3_1_mensfashion_sherwanis#catId=10079&amp;type=sherwanis&amp;pageId=1&amp;">Sherwanis</a></li>
+							<li><a href="/cvfeeds/bestselling-mens-kurta-pyjamas-with-jackets-online-craftsvilla/?MID=megamenu_3_2_mensfashion_kurtapyjamasjackets_803">Kurta Pyjamas with Jacket</a></li>
+							<li><a href="/cvfeeds/bestselling-mens-bandhgala-online-craftsvilla/?MID=megamenu_3_3_mensfashion_bandhgalas_743">Bandhgalas</a></li>
+							<li><a href="/cvfeeds/trendy-ethnic-bottom-wear-dhotis-craftsvilla/?MID=megamenu_3_4_mensfashion_dhotipants_620">Dhoti Pants</a></li>
+							<li><a href="/mens-fashion/mens-shirts/?MID=megamenu_3_5_mensfashion_linenshirts#catId=10083&amp;fabric=linen&amp;pageId=1&amp;">Linen Shirts</a></li>
+							<li><a href="/mens-fashion/mens-tshirts/?MID=megamenu_3_6_mensfashion_handpaintedtshirts#catId=10082&amp;pattern=hand painted&amp;pageId=1&amp;">Handpainted <br>T-shirts</a></li>
+							<li><a href="/accessories/footwear/footwear-men/?MID=megamenu_3_7_mensfashion_mensfootwear">Men's Footwear</a></li>
+							<!-- <li><a href="/searchresults?searchby=product&q=pyjama&MID=megamenu_fashion&lifestyle_casual_pyjama">Pyjamas</a></li> -->
+
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Brands <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/cvfeeds/bestselling-manyavar-kurtas-craftsvilla/?MID=megamenu_4_1_mensfashion_manyavar_127">Manyavar</a></li>
+							<li><a href="/cvfeeds/bestselling-fashion-curries-mens-kurta-pyjamas-online-craftsvilla/?MID=megamenu_4_2_mensfashion_fashioncurries_742">Fashion Curries</a></li>
+							<li><a href="/cvfeeds/bestselling-sanwara-kurtas-craftsvilla/?MID=megamenu_4_3_mensfashion_sanwara_128">Sanwara Fashions</a></li>
+							<li><a href="/cvfeeds/bestselling-svanik-mens-kurtas-pyjamas-online-craftsvilla/?MID=megamenu_4_4_mensfashion_svanik_740">Svanik</a></li>
+							<li><a href="/cvfeeds/bestselling-fuzion-couture-mens-kurtas-and-kurta-pyjamas-online-craftsvilla/?MID=megamenu_4_5_mensfashion_fuzioncouture_741">Fuzion Couture</a></li>
+						</ul>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/ethnic-casual-wear-for-men-20212.html?MID=megamenu_fashion&amp;lifestyle_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Ethnic_Casuals_170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/Ethnic_Casuals_170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="/store-front/home-decor/">HOME DECOR <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Collections <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/cvfeeds/buy-latest-jaipuri-bedsheets-online-craftsvilla/?MID=megamenu_1_1_JaipuriBedsheets_645">Jaipuri Bedsheets</a></li>
+							<li><a href="/cvfeeds/buy-latest-jaipuri-blankets-quilts-online-craftsvilla/?MID=megamenu_1_2_JaipuriQuilts_646">Jaipuri Quilts</a></li>
+							<li><a href="/cvfeeds/buy-jaipuri-benarasi-cushion-covers-online-craftsvilla/?MID=megamenu_1_3_JaipuriBenarasiCushionCovers_794">Traditional Cushion Covers</a></li>
+							<li><a href="/cvfeeds/buy-trendy-colorful-cushion-covers-online-craftsvilla/?MID=megamenu_1_4_TrendyCushionCovers_791">Trendy Cushion Covers</a></li>
+							<li><a href="/cvfeeds/buy-pooja-essentials-idols-spiritual-home-decor-craftsvilla//?MID=megamenu_1_5_Spiritual_152">Spiritual Idols</a></li>
+							<li><a href="/cvfeeds/buy-ethnic-home-decor-decorative-handicrafts-craftsvilla//?MID=megamenu_1_6_DecorativeHandicrafts_151">Handicrafts</a></li>
+							<li><a href="/cvfeeds/best-ethnic-gifting-home-decor-items-craftsvilla//?MID=megamenu_1_7_EthnicGiftStore_147">Gift Store</a></li>
+							<li><a href="/cvfeeds/buy-trendy-handpainted-home-decor-craftsvilla//?MID=megamenu_1_8_Handpaintedproducts_146">Handpainted Items</a></li>
+							<li><a href="/events/Indian-handicrafts/?MID=megamenu_1_9_Homedecor_CraftsofIndia">Crafts of India</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Top Selling <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/home-furnishing/bedsheets-throws/?MID=megamenu_2_1_Homedecor_Bedsheets">Bedsheets</a></li>
+							<li><a href="/home-furnishing/quilts-blankets/?MID=megamenu_2_2_Homedecor_QuiltsandBlankets">Quilts and Blankets</a></li>
+							<li><a href="/cvfeeds/buy-trendy-decorative-ethnic-lamps-craftsvilla/?MID=megamenu_2_3_Lamps_149">Lamps</a></li>
+							<li><a href="/cvfeeds/best-selling-decorative-ethnic-lanterns-tea-light-holders-craftsvilla/?MID=megamenu_2_4_LanternsandTealightHolders_150">Lanterns and Tealights</a></li>
+							<li><a href="/cvfeeds/buy-ethnic-tableware-dinnerware-items-craftsvilla/?MID=megamenu_2_5_Tableware_148">Tableware</a></li>
+							<li><a href="/cvfeeds/buy-trendy-trays-coasters-trivets-online-craftsvilla/?MID=megamenu_2_6_TraysandCoasters_804">Trays and Coasters</a></li>
+							<li><a href="/home-decor/paintings/?MID=megamenu_2_7_Homedecor_WallArtnPaintings">Wall Art n Paintings</a></li>
+							<li><a href="/cvfeeds/buy-ethnic-terracotta-vases-online-craftsvilla/?MID=megamenu_2_8_TerracottaVases_798">Terracotta Vases</a></li>
+							<li><a href="/cvfeeds/buy-best-selling-affordable-temples-online-craftsvilla/?MID=megamenu_2_9_Temples_806">Temples</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Furnishings<div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/home-furnishing/bedding/?MID=megamenu_3_1_Homedecor_Bedding">Bedding</a></li>
+							<li><a href="/home-furnishing/pillow-n-cushion-covers/pillow-covers/?MID=megamenu_3_2_Homedecor_PillowCovers">Pillow Covers</a></li>
+							<li><a href="/home-furnishing/pillow-n-cushion-covers/?MID=megamenu_3_3_Homedecor_CushionCovers#catId=10069&amp;type=cushion cover&amp;pageId=1&amp;">Cushion Covers</a></li>
+							<li><a href="/home-furnishing/curtains/?MID=megamenu_3_4_Homedecor_Curtains">Curtains</a></li>
+							<li><a href="/home-furnishing/rugs/?MID=megamenu_3_5_Homedecor_CarpetsandRugs">Carpets and Rugs</a></li>
+							<li><a href="/kitchen/dining-serving/?MID=megamenu_3_6_Homedecor_DiningandServing">Dining and Serving</a></li>
+							<li><a href="/kitchen/other-kitchen-items/?MID=megamenu_3_7_Homedecor_KitchenAccessories">Kitchen Accessories</a></li>
+							<li><a href="/cvfeeds/buy-decorative-handicraft-boxes-baskets-online-craftsvilla/?MID=megamenu_3_8_BoxesandBaskets_805">Boxes and Baskets</a></li>
+							<li><a href="/home-furnishing/?MID=megamenu_3_9_Homedecor_SeeAll">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Decor <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/home-decor/lamps-lightings/?MID=megamenu_4_1_Homedecor_LightingDecor">Lighting Decor</a></li>
+							<li><a href="/cvfeeds/buy-trendy-ethnic-vases-pots-online-craftsvilla/?MID=megamenu_4_2_Vases_797">Vases</a></li>
+							<li><a href="/cvfeeds/buy-trendy-decorative-ethnic-clocks-craftsvilla/?MID=megamenu_4_3_TrendyEthnicClocks_644">Clocks</a></li>
+							<li><a href="/home-decor/mirrors/?MID=megamenu_4_4_Homedecor_Mirrors">Mirrors</a></li>
+							<li><a href="/cvfeeds/buy-trendy-ethnic-photo-frames-online-craftsvilla/?MID=megamenu_4_5_PhotoFrames_839">Photo Frames</a></li>
+							<li><a href="/home-decor/decoratives/?MID=megamenu_4_6_Homedecor_Decoratives">Decoratives</a></li>
+							<li><a href="/home-decor/candles/?MID=megamenu_4_7_Homedecor_CandlesandFragrances">Candles and Fragrances</a></li>
+							<li><a href="/spiritual/?MID=megamenu_4_8_Homedecor_ReligiousandSpiritual">Spiritual</a></li>
+							<li><a href="/home-decor/?MID=megamenu_4_9_Homedecor_SeeAll">See All</a></li>
+
+						</ul>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/fancy-home-decor-products-20223.html?MID=megamenu_homedecor_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/fancydecor.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/fancydecor.jpg" alt="">
+                      </a>
+    									<a href="/cvfeeds/bed-sheet-starting-from-rs299-20196.html?MID=megamenu_homedecor_MB_2">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/cottonbedsheets_170x150.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/cottonbedsheets_170x150.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/colourful-cushion-covers-20166.html?MID=megamenu_homedecor_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/cushion_covers_170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/cushion_covers_170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li>
+    				<a first-click="" href="/store-front/beauty-lifestyle/?MID=Normal_BeautyProducts_3_748_4">BEAUTY &amp; LIFESTYLE <span class="first_arrow visible-xs visible-sm icon"></span></a>
+    				<div data-sub-menu="">
+    					<div class="container sub-menu-wrapper">
+    						<ul>
+    							<li>
+						<a click-menu="">Beauty Care <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/bath-beauty/haircare/?MID=megamenu_personalcare_beautycare_haircare">Hair Care<span>New</span></a></li>
+							<li><a href="/bath-beauty/skincare/?MID=megamenu_personalcare_beautycare_skincare">Skin Care<span>New</span></a></li>
+							<li><a href="/bath-beauty/makeup-cosmetics/?MID=megamenu_personalcare_beautycare_makeup">Makeup</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=under+eye&amp;MID=megamenu_personalcare_skincare_Eyecare">Eye Care</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=Lip+Balm&amp;MID=megamenu_personalcare_skincare_lipcare">Lip Care</a></li>
+							<li><a href="/bath-beauty/fragrances/?MID=megamenu_personalcare_beautycare_perfumes">Perfumes</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=face+wash&amp;MID=megamenu_personalcare_skincare_facewash">Face wash</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=face+pack&amp;MID=megamenu_personalcare_skincare_facepack">Face Pack &amp; Masks</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=shampoo&amp;MID=megamenu_personalcare_haircare_shampoo">Shampoo</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=conditioner&amp;MID=megamenu_personalcare_haircare_conditioner">Conditioner</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Body Care <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/searchresults?searchby=product&amp;q=shower+gel&amp;MID=megamenu_personalcare_bodycare_showergels">Shower Gels</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=soap&amp;MID=megamenu_personalcare_bodycare_soaps">Soaps</a></li>
+							<li><a href="/bath-beauty/oils/?MID=megamenu_personalcare_bodycare_oil">Bath &amp; Beauty Oil</a></li>
+							<li><a href="/bath-beauty/shower-gels/?MID=megamenu_personalcare_bodycare_bathsalts">Bath Salts</a></li>
+							<!-- <li><a href="/searchresults?searchby=product&q=hygiene&MID=megamenu_personalcare_bodycare_hygiene">Hygiene</a></li> -->
+							<li><a href="/searchresults?searchby=product&amp;q=body+lotion&amp;MID=megamenu_personalcare_bodycare_bodylotion">Body Lotion</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=scrub&amp;MID=megamenu_personalcare_bodycare_scrub">Scrub</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=massage+oil&amp;MID=megamenu_personalcare_bodycare_massageoil">Massage Oil</a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=body+care&amp;MID=megamenu_personalcare_bodycare_seeall">See All</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Food <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a target="_blank" href="http://www.placeoforigin.in/sweets-confectionery/sweets?utm_source=CVHome">Sweets</a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/snacks/namkeen?utm_source=CVHome">Namkeen</a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/staples/pickles-and-sauces?utm_source=CVHome">Pickles</a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/sweets-confectionery/chocolates?utm_source=CVHome">Chocolates</a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/snacks/dry-fruits?utm_source=CVHome">Dry Fruits</a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/staples/tea-49?utm_source=CVHome">Tea<span>New</span></a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/staples/coffee?utm_source=CVHome">Coffee</a></li>
+							<li><a target="_blank" href="http://www.placeoforigin.in/staples/spices-grains?utm_source=CVHome">Herbs &amp; Spices</a></li>
+							<li><a href="/food-health/pickles-jams-chutneys/chutney/?MID=megamenu_personalcare_chutneys">Chutneys</a></li>
+						</ul>
+					</li>
+					<li>
+						<a click-menu="">Health Care <div class="visible-xs acc-arrow"><span>&nbsp;</span><span>&nbsp;</span></div></a>
+						<ul>
+							<li><a href="/food-health/ayurvedic-health/?MID=megamenu_personalcare_healthcare_ayurvedic">Ayurvedic<span>New</span></a></li>
+							<li><a href="/food-health/massage-equipments?MID=megamenu_personalcare_healthcare_massage&amp;workout">Massage &amp; Workout</a></li>
+							<li><a href="/food-health/ayurvedic-health/health-supplements/?MID=megamenu_personalcare_healthcare_supplements">Supplements</a></li>
+							<!-- <li><a href="/searchresults?searchby=product&q=weight+loss&MID=megamenu_beauty&lifestyle_healthcare_weightcontrol">Weight Control</a></li>
+							<li><a href="/searchresults?searchby=product&q=sexual&MID=megamenu_beauty&lifestyle_healthcare_sexual-wellness">Sexual Wellness <span>New</span></a></li> -->
+							<li><a href="/cvfeeds/beautyproducts-thenaturesco-craftsvilla?MID=megamenu_personalcare_brands_thenaturesco">The Nature's co<span>New</span></a></li>
+							<li><a href="/cvfeeds/beautyproducts-biotique-craftsvilla?MID=megamenu_personalcare_brands_biotique">Biotique<span>New</span></a></li>
+							<li><a href="/cvfeeds/beautyproducts-barva-craftsvilla?MID=megamenu_personalcare_brands_barvaskintherapie">Barva Skin Therapie<span>New</span></a></li>
+							<li><a href="/cvfeeds/beautyproducts-vrikshalinatural-craftsvilla?MID=megamenu_personalcare_brands_vrikshali">Vrikshali <span>New</span></a></li>
+							<li><a href="/cvfeeds/beautyproducts-auravedic-craftsvilla?MID=megamenu_personalcare_brands_auravedic">Auravedic <span>New</span></a></li>
+							<li><a href="/searchresults?searchby=product&amp;q=health&amp;MID=megamenu_beauty&amp;lifestyle_healthcare_seall">See All</a></li>
+						</ul>
+					</li>
+    							<li class="hidden-xs">
+    								<div class="image_box">
+    									<a href="/cvfeeds/facial-kits-for-women-20222.html?MID=megamenu_personalcare_MB_1">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/facialkits_170x150.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/facialkits_170x150.jpg" alt="">
+                      </a>
+    									<a href="/cvfeeds/oil-control-products-20197.html?MID=megamenu_personalcare_MB_2">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/skincare_170x150.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/skincare_170x150.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    							<li class="hidden-xs">
+    								<div class="image_box long_image_box">
+    									<a href="/cvfeeds/personal-care-products-20168.html?MID=megamenu_personalcare_MB_3">
+                        <img class="lazy-onload" data-src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_beautideals_170X320.jpg" src="http://lstatic1.craftsvilla.com/skin/frontend/default/craftsvilla2015/img/best_beautideals_170X320.jpg" alt="">
+                      </a>
+    								</div>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    			</li>
+    			<li role="currency" class="visible-xs border-top">
+    				<a class="change-currency">Change Currency
+    					<!--<span><img class="lazy-onload" data-src="img/india.svg" alt="">INR</span>-->
+    					<span id="mob-currencycode">INR</span>
+    				</a>
+    			</li>
+    			<!-- <li role="call" class="visible-xs border-top"><a href="tel:02261579090"><span class="icon icon-call"></span><a href="/contact-us-craftsvilla" class="clrrouge">Contact us </a> for any assistance</a></li> -->
+					<li role="call" class="visible-xs border-top"><a href="/contact-us-craftsvilla"><span class="icon icon-call"></span><span class="clrrouge">Contact us&nbsp;&nbsp;</span> for any assistance</a></li>
+    			<li role="Download-app" class="visible-xs border-top">
+    				<div class="col-xs-12 nopadding">
+    					<ul data-app="">
+    						<li><a href="https://play.google.com/store/apps/details?id=com.craftsvilla.app&amp;hl=en"><span class="icon icon-download"></span> Download App</a></li>
+    						<li><a href="/sell">Sell on Craftsvilla</a></li>
+    					</ul>
+    				</div>
+    			</li>
+    		</ul>
+	</body>
+</html>
