@@ -2,6 +2,9 @@
 <div class="button download-button" ng-click="downloadJSON()">
 		&nbsp;&nbsp;&nbsp;DOWNLOAD&nbsp;&nbsp;&nbsp;
 </div>
+<div class="button" ng-if="fileName">
+	{{fileName}}
+</div>
 <a id="download-button" ng-show="false"></a>
 <div ng-if="false" class="button download-button broker-link-button" ng-click="showLinkChecker=true;checkBrokenLinks()">
 		&nbsp;&nbsp;&nbsp;TEST BROKEN LINKS&nbsp;&nbsp;&nbsp;
