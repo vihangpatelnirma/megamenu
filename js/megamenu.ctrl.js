@@ -78,7 +78,7 @@ angular.module('megamenu')
 				var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.data,allowedArray,'\t'));
 				var dlAnchorElem = document.getElementById('download-button');
 				dlAnchorElem.setAttribute("href",     dataStr     );
-				dlAnchorElem.setAttribute("download", "megamenu.json");
+				dlAnchorElem.setAttribute("download", "megamenu.1473395914.json");
 				dlAnchorElem.click();
 			},100);
 		}
