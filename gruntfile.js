@@ -25,17 +25,26 @@ module.exports = function(grunt) {
             dest: 'dist/js/built.js',
           },
         },
-        jst: {
-          compile: {
-            options: {
-              templateSettings: {
-                interpolate: /\{\{(.+?)\}\}/g
-              }
-            },
-            files: {
-              'dist/js/templates.js': ['partial/*.html']
+        ngtemplates: {
+            app: {
+                src: ['partial/*.html'],
+                dest: 'dist/js/templates.js',
+                options: {
+                    bootstrap:  function(module, script) {
+                        return script;//'define([\'angular\', \'app\'], function(angular, app) { app.run([\'$templateCache\', function($templateCache) {' + script + '}]); });';
+                    }
+                },
+                htmlmin: {
+                    collapseBooleanAttributes:      true,
+                    collapseWhitespace:             true,
+                    removeAttributeQuotes:          true,
+                    removeComments:                 true,
+                    removeEmptyAttributes:          true,
+                    removeRedundantAttributes:      true,
+                    removeScriptTypeAttributes:     true,
+                    removeStyleLinkTypeAttributes:  true
+                }
             }
-          }
         }
 
 
@@ -43,7 +52,7 @@ module.exports = function(grunt) {
     
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-jst');
+    grunt.loadNpmTasks('grunt-angular-templates');
 
-    grunt.registerTask('default', ['jst','concat','uglify']);
+    grunt.registerTask('default', ['ngtemplates','concat','uglify']);
 };
