@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-angular-jst');
 
     grunt.registerTask('default', ['ngtemplates','concat','uglify']);
 };
